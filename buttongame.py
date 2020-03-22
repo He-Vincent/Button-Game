@@ -1,12 +1,9 @@
-# goal of game: 4 white square change to red and then they change back to white then user must press in that order
-#sequence is 4 moves, start with same, then import random to do random 4 move sequence, 
-#user has 5 seconds to click that same sequence
+#goal of game: 4 white square change to red and then they change back to white then user must press in that order
+#sequence is 4 moves, so import random to do random 4 move sequence
+#gets harder by adding one move to computer sequence after every success
 import pygame
 import random
 import time
-
-
-	#assign each square a number 1-4 and if their number called, it changes to red
 
 pygame.init()
 
@@ -90,38 +87,23 @@ def midtop_text(surf, text, size, x, y, colour):
 	text_rect.midtop = (x, y)
 	surf.blit(text_surface, text_rect)
 
-#every 2 seconds button color changes from white to red then user must press the button  within 2 seconds
-#if successful display message or else print nub
+#if successful display message if fail display message
 
 cycle = True
 
 user_cycle = True
 
-pause_time = 0.75
+pause_time = 0.5
 
 click = False
           
 while True:
 
-	#user_moves not storing ints wtf
-
 	draw()
-
-	#for event in pygame.event.get():
-		#mouseX, mouseY = pygame.mouse.get_pos()
-
-		#if event.type == pygame.QUIT:	
-			#pygame.quit()
-			
-	#for i in range(4):
-		#moves.append(random.randint(1,4))
 
      #computer moves
 		
-		#make so that one button from white to red, pause then back to white, ONE AFTER ANOTHER
-		#why still go after 4 moves????
-		#keeps running same sequence 
-		#stop after 4 moves
+		#make so that one button from white to red, pause then back to white, one after another
 	if cycle:
 		sequencenum = wins + 4
 		usermovesnum = 0
@@ -160,6 +142,7 @@ while True:
 		target_time = time.time() + 5 + 1.25 * wins
 	cycle = False
 
+#if user is idle then its a fail
 	if time.time() >= target_time:
 		midtop_text(win, "fail", fontsize, middle_x, middle_y, (255,0,0))
 		pygame.display.update()
@@ -167,10 +150,8 @@ while True:
 		cycle = True
 		wins = 0
 		
-			#user moves, if user does all 4 correctly, at the end display "success"
-			#if not, at the end of user's 4 moves, display "nope"
-			#give user 5 sec to do moves
-		
+			#user moves, if user does all correctly, at the end display "success"
+
 	for event in pygame.event.get():
 
 		mouseX, mouseY = pygame.mouse.get_pos()
@@ -185,8 +166,6 @@ while True:
 
 
 	if click:
- #how to change so that after 4 user moves, instead of exiting program, it checks the users moves against computer moves
- #how to give user 5 seconds to press the same sequence of moves as computer
 		
 		#button 1
 		
@@ -226,6 +205,7 @@ while True:
 			user_moves.append(4)
 			usermovesnum += 1
 
+			#correct sequence, then "success"
 		if usermovesnum == sequencenum:
 			if moves == user_moves and time.time() <= target_time:
 				midtop_text(win, "success", fontsize, middle_x, middle_y, (0,255,0))
@@ -233,7 +213,7 @@ while True:
 				time.sleep(2)
 				cycle = True
 				wins += 1
-						#if time runs out and user is idle then lose	
+					#incorrect sequence, then "fail"
 			else:
 				midtop_text(win, "fail", fontsize, middle_x, middle_y, (255,0,0))
 				pygame.display.update()
@@ -241,5 +221,5 @@ while True:
 				cycle = True
 				wins = 0
 		
-			# computer 4 moves then user 4 moves, then after, upon click, all buttons remain white
+		
 	click = False
