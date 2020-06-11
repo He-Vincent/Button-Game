@@ -6,9 +6,10 @@ The goal of this game: to watch the computer's moves of pressing the buttons fro
 
 How to Run the game:
 
-1. Download Python from python.org
-2. Open cmd and install pygame by typing "pip install pygame"
-3. Click on my Button-Game repository
-4. Click on the "clone or download" button on my Button-Game repository
-5. Click "Download Zip"
-6. Extract it and double-click "buttongame.py"
+1. Click on my Button-Game repository
+2. Click on the "clone or download" button on my Button-Game repository
+3. Click "Download Zip"
+4. Extract it and double-click "buttongame.exe"
+5. A "Windows protected your PC" pop up will appear
+6. Click "More info"
+7. Click "Run anyway"
